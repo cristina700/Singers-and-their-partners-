@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="C:/Users/Cristina/Documents/CODING/github REPOSITORY/Pr1 singers and their partners/Singers and their partners.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="944"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="4,9:mainbirthdate"/><default_encoding codec=""/><browse_table_settings/></tab_browse><tab_sql><sql name="SQL 1">SELECT a.fullname as singer, b.fullname as singer_partner FROM partners
+JOIN singers a
+ON partners.partner_1 = a.id
+JOIN singers b
+ON partners.partner_2 = b.id; </sql><sql name="SQL 2">SELECT singers.fullname as singer, songs.title as song FROM singers
+JOIN songs
+ON songs.id = singers.id;
+</sql><sql name="SQL 3">SELECT a.fullname as singer, b.fullname as partner, songs.title as song FROM partners
+JOIN singers a
+ON partners.partner_1 = a.id
+JOIN singers b
+ON partners.partner_2 = b.id
+JOIN songs
+ON songs.id = a.id;  </sql><sql name="SQL 4">SELECT COUNT (*) famous_condition,
+CASE WHEN 
+&quot;famous_condition&quot; = &quot;Yes&quot; THEN &quot;Famous couple&quot; WHEN &quot;famous_condition&quot; = &quot;No&quot; THEN &quot;Not famous couple&quot;
+END as &quot;couples fame condition&quot; FROM partners GROUP BY &quot;famous_condition&quot;;</sql><sql name="SQL 5">SELECT singers.fullname, birthdate.DATE FROM singers 
+JOIN birthdate
+ON singers.id = birthdate.id;</sql><current_tab id="2"/></tab_sql></sqlb_project>
