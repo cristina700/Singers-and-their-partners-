@@ -1,0 +1,85 @@
+CREATE TABLE singers (id INTEGER PRIMARY KEY AUTOINCREMENT, fullname TEXT, birthdate TEXT);
+
+INSERT INTO singers (fullname, birthdate) VALUES ("Ariana Grande", "6-26-1993");
+INSERT INTO singers (fullname, birthdate) VALUES ("Dalton Gomez", "8-7-1995");
+INSERT INTO singers (fullname, birthdate) VALUES ("Beyonce", "9-4-1981");
+INSERT INTO singers (fullname, birthdate) VALUES ("Jay-Z", "12-4-1969");
+INSERT INTO singers (fullname, birthdate) VALUES ("Machine Gun Kelly", "4-22-1990");
+INSERT INTO singers (fullname, birthdate) VALUES ("Meghan Fox", "5-16-1986");
+INSERT INTO singers (fullname, birthdate) VALUES ("Keith Richards", "12-18-1943");
+INSERT INTO singers (fullname, birthdate) VALUES ("Patty Hansen", "3-7-1956" );
+INSERT INTO singers (fullname, birthdate) VALUES ("Gwen Stefani", "10-3-1969");
+INSERT INTO singers (fullname, birthdate) VALUES ("Blake Shelton", "6-18-1976");
+INSERT INTO singers (fullname, birthdate) VALUES ("Chris Martin", "2-3-1977");
+INSERT INTO singers (fullname, birthdate) VALUES ("Dakota Johnson", "10-4-1989");
+INSERT INTO singers (fullname, birthdate) VALUES ("Rihanna", "2-20-1988");
+INSERT INTO singers (fullname, birthdate) VALUES ("ASAP Rocky", "10-3-1988");
+INSERT INTO singers (fullname, birthdate) VALUES ("Ed Sheeran", "17-2-1991");
+INSERT INTO singers (fullname, birthdate) VALUES ("Cherry Seaborn", "5-6-92");
+
+CREATE TABLE partners (id INTEGER PRIMARY KEY AUTOINCREMENT, partner_1 INTEGER, partner_2 INTEGER, famous_condition TEXT);
+
+INSERT INTO partners (partner_1, partner_2, famous_condition) VALUES (1, 2, "No");
+INSERT INTO partners (partner_1, partner_2, famous_condition) VALUES (3, 4, "Yes");
+INSERT INTO partners (partner_1, partner_2, famous_condition) VALUES (5, 6, "Yes");
+INSERT INTO partners (partner_1, partner_2, famous_condition) VALUES (7, 8, "Yes");
+INSERT INTO partners (partner_1, partner_2, famous_condition) VALUES (9, 10, "Yes");
+INSERT INTO partners (partner_1, partner_2, famous_condition) VALUES (11, 12, "Yes");
+INSERT INTO partners (partner_1, partner_2, famous_condition) VALUES (13, 14, "Yes");
+INSERT INTO partners (partner_1, partner_2, famous_condition) VALUES (15, 16, "No");
+
+
+CREATE TABLE songs (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT);
+INSERT INTO songs (id, title) VALUES (1,"Break free");
+INSERT INTO songs (id, title) VALUES (3,"Single ladies");
+INSERT INTO songs (id, title) VALUES (5,"Bloody Valentine");
+INSERT INTO songs (id, title) VALUES (7,"Eileen");
+INSERT INTO songs (id, title) VALUES (9,"Cool");
+INSERT INTO songs (id, title) VALUES (11,"Princess of China");
+INSERT INTO songs (id, title) VALUES (13,"Diamonds");
+INSERT INTO songs (id, title) VALUES (15,"Shape of you");
+
+CREATE TABLE birthdate (id INTEGER PRIMARY KEY AUTOINCREMENT, DATE text);
+INSERT INTO birthdate (id, DATE) VALUES (1,   "6-26-1993");
+INSERT INTO birthdate (id, DATE) VALUES (2,  "8-7-1995");
+INSERT INTO birthdate (id, DATE) VALUES (3,  "9-4-1981" ); 
+INSERT INTO birthdate (id, DATE) VALUES (4,  "12-4-1969");
+INSERT INTO birthdate (id, DATE) VALUES (5,  "4-22-1990"); 
+INSERT INTO birthdate (id, DATE) VALUES (6,  "5-16-1986"); 
+INSERT INTO birthdate (id, DATE) VALUES (7,  "12-18-1943"); 
+INSERT INTO birthdate (id, DATE) VALUES (8,  "3-7-1956" ); 
+INSERT INTO birthdate (id, DATE) VALUES (9, "10-3-1969"); 
+INSERT INTO birthdate (id, DATE) VALUES (10,  "6-18-1976");
+INSERT INTO birthdate (id, DATE) VALUES (11,  "2-3-1977"); 
+INSERT INTO birthdate (id, DATE) VALUES (12,  "10-4-1989"); 
+INSERT INTO birthdate (id, DATE) VALUES (13,  "2-20-1988"); 
+INSERT INTO birthdate (id, DATE) VALUES (14,  "10-3-1988"); 
+INSERT INTO birthdate (id, DATE) VALUES (15,  "17-2-1991"); 
+INSERT INTO birthdate (id, DATE) VALUES (16,  "5-6-1992");
+
+SELECT a.fullname as singer, b.fullname as singer_partner FROM partners
+JOIN singers a
+ON partners.partner_1 = a.id
+JOIN singers b
+ON partners.partner_2 = b.id; 
+
+SELECT singers.fullname as singer, songs.title as song FROM singers
+JOIN songs
+ON songs.id = singers.id;
+
+SELECT a.fullname as singer, b.fullname as partner, songs.title as song FROM partners
+JOIN singers a
+ON partners.partner_1 = a.id
+JOIN singers b
+ON partners.partner_2 = b.id
+JOIN songs
+ON songs.id = a.id;    
+
+SELECT COUNT (*) famous_condition,
+CASE WHEN 
+"famous_condition" = "Yes" THEN "Famous couple" WHEN "famous_condition" = "No" THEN "Not famous couple"
+END as "couples fame condition" FROM partners GROUP BY "famous_condition";
+
+SELECT singers.fullname, birthdate.DATE FROM singers 
+JOIN birthdate
+ON singers.id = birthdate.id;
