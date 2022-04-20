@@ -1,3 +1,0 @@
-famous_condition,couples fame condition
-2,Not famous couple
-6,Famous couple
